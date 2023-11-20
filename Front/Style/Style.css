@@ -1,0 +1,52 @@
+.Body{
+    background-color: #dddbdb;
+}
+#Nav{
+    background-color: #3333dd;
+    width: 100%;
+}
+#ImgLogo{
+    width: 15%;
+    margin-top: 1%;
+    margin-bottom: 0.5%;
+    margin-left: 1%;
+}
+#CardConteudo{
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 90%;
+}
+#Conteudo{
+    width: 95%;
+    margin-left: 2%;
+}
+#Button{
+    margin-left: 90%;
+    
+}
+#Form{
+    background-color: #ffffff;
+    width: 30%;
+    margin-left: 35%;
+    border-radius: 2%;
+    margin-top: 3%;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+#btn2{
+    margin-left: 65%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    background-color: #3333dd;
+    width: 25%;
+}
+#label{
+    margin-left: 10%;
+    width: 80%;
+}
+#Title1{
+    color: #000000;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    margin-left: 31%;
+    margin-top: 3%;
+}

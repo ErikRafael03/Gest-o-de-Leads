@@ -33,45 +33,60 @@ async function getContent(files) {
 }
 
 app.post("/", async (req, res) => {
-  const files = [path.join(__dirname, "./arquivo.xlsx")]
-  const result = await getContent(files)
-  const lista_dados = []
-  for (let i = 1; i < result[0].length; i++) {
-    const registro = {
-      Inscricao: result[0][i][0],
-      Dt_Inscricao: result[0][i][1],
-      Nome: result[0][i][2],
-      Email: result[0][i][3],
-      Num_Telefone: result[0][i][4],
-      Classificacao: result[0][i][5],
-      Dt_Classificacao: result[0][i][6],
-      Curso: result[0][i][7],
-      Duracao: result[0][i][8],
-      CODCurso: result[0][i][9],
-      Turno: result[0][i][10],
-      Filial: result[0][i][11],
-      Modalidade: result[0][i][12],
-      Polo: result[0][i][13],
-      Semestre: result[0][i][14],
-      Valor_Matricula: result[0][i][15],
-      ContratoAceito: result[0][i][16],
-      Tipo_de_Aceite: result[0][i][17],
-      IP_do_Aceite: result[0][i][18],
-    }
-    lista_dados.push(registro)
-  }
+  try {
+    const files = [path.join(__dirname, "./arquivo.xlsx")]
+    const result = await getContent(files)
+    const collection = db.collection("leads")
 
-  // Inserir os registros no banco de dados
-  const collection = db.collection("leads")
-  collection.insertMany(lista_dados, (err, result) => {
-    if (err) {
-      console.error("Erro ao inserir registros:", err)
-      res.status(500).json({ error: "Erro ao inserir registros" })
-    } else {
-      console.log("Registros inseridos com sucesso!!")
-      res.json({ message: "Registros inseridos com sucesso" })
+    for (let i = 1; i < result[0].length; i++) {
+      const registro = {
+        Inscricao: result[0][i][0],
+        Dt_Inscricao: result[0][i][1],
+        Nome: result[0][i][2],
+        Email: result[0][i][3],
+        Num_Telefone: result[0][i][4],
+        Classificacao: result[0][i][5],
+        Dt_Classificacao: result[0][i][6],
+        Curso: result[0][i][7],
+        Duracao: result[0][i][8],
+        CODCurso: result[0][i][9],
+        Turno: result[0][i][10],
+        Filial: result[0][i][11],
+        Modalidade: result[0][i][12],
+        Polo: result[0][i][13],
+        Semestre: result[0][i][14],
+        Valor_Matricula: result[0][i][15],
+        ContratoAceito: result[0][i][16],
+        Tipo_de_Aceite: result[0][i][17],
+        IP_do_Aceite: result[0][i][18],
+      }
+
+      // Verificar se o registro já existe no banco de dados
+      const existingRecord = await collection.findOne({
+        Inscricao: registro.Inscricao,
+      })
+
+      if (existingRecord) {
+        // Se o registro já existe, atualize-o
+        console.log("Registro ja existe, substituindo...")
+        await collection.findOneAndUpdate(
+          { Inscricao: registro.Inscricao },
+          { $set: registro }
+        )
+        console.log(`Registro existente atualizado: ${registro.Inscricao}`)
+      } else {
+        // Se o registro não existe, insira-o no banco de dados
+        await collection.insertOne(registro)
+        console.log(`Novo registro inserido: ${registro.Inscricao}`)
+      }
     }
-  })
+
+    console.log("Processo de verificação e inserção concluído.")
+    res.json({ message: "Registros verificados e inseridos com sucesso" })
+  } catch (error) {
+    console.error("Erro ao verificar e inserir registros:", error)
+    res.status(500).json({ error: "Erro ao verificar e inserir registros" })
+  }
 })
 
 app.listen(port, () => {

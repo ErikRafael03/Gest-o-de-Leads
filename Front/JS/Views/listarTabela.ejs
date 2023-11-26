@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Gestão de Leads</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./CSS/style.css">
+  <script src="../index.js" async defer></script>
+</head>
+
+<body>
+
+
+  <ul>
+    <li>
+      <img src="./Logo.png" id="ImgLogo">
+      
+    </li>
+  </ul>
+
+  <h2 id="Title">Dados da Tabela</h2>
+  <br>
+
+  <div class="container">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Inscrição</th>
+          <th scope="col">Data Inscrição</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Classificação</th>
+          <th scope="col">Data Classificação</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Duração</th>
+          <th scope="col">Código Curso</th>
+          <th scope="col">Turno</th>
+          <th scope="col">Filial</th>
+          <th scope="col">Modalidade</th>
+          <th scope="col">Polo</th>
+          <th scope="col">Valor Matricula</th>
+          <th scope="col">Contrato Aceito</th>
+          <th scope="col">Tipo de Aceite</th>
+          <th scope="col">IP do Aceite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0; i < dados.length; i++) { %>
+          <tr>
+            <td>
+              <%= dados[i].Inscricao %>
+            </td>
+            <td>
+              <%= dados[i].Dt_Inscricao.toLocaleDateString('pt-BR') %>
+            </td>
+            <td>
+              <%= dados[i].Nome %>
+            </td>
+            <td>
+              <%= dados[i].Email %>
+            </td>
+            <td>
+              <%= dados[i].Num_Telefone %>
+            </td>
+            <td>
+              <%= dados[i].Classificacao %>
+            </td>
+            <td>
+              <%= dados[i].Dt_Classificacao %>
+            </td>
+            <td>
+              <%= dados[i].Curso %>
+            </td>
+            <td>
+              <%= dados[i].Duracao %>
+            </td>
+            <td>
+              <%= dados[i].CODCurso %>
+            </td>
+            <td>
+              <%= dados[i].Turno %>
+            </td>
+            <td>
+              <%= dados[i].Filial %>
+            </td>
+            <td>
+              <%= dados[i].Modalidade %>
+            </td>
+            <td>
+              <%= dados[i].Polo %>
+            </td>
+            <td>
+              <%= dados[i].Valor_Matricula %>
+            </td>
+            <td>
+              <%= dados[i].ContratoAceito %>
+            </td>
+            <td>
+              <%= dados[i].Tipo_de_Aceite %>
+            </td>
+            <td>
+              <%= dados[i].IP_do_Aceite %>
+            </td>
+            <% } %>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+</html>

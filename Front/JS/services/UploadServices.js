@@ -12,12 +12,12 @@ module.exports = (multer({
 
         // Local para salvar o arquivo
         destination: (req, file, cb) => {
-            cb(null, './public/upload/csv')
+            cb(null, './uploaded')
         },
 
         // Nome que deve ser atribuido ao arquivo
         filename: (req, file, cb) => {
-            cb(null, Date.now().toString() + Math.round(Math.random() * 1E9) + path.extname(file.originalname));
+            cb(null, Date.now().toString() + path.extname(file.originalname));
         }
     }),
 

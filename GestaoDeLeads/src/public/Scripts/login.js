@@ -9,7 +9,7 @@ function Login() {
 
     if (nomeDigitado === perfilPadrao.nome && senhaDigitada === perfilPadrao.senha.toString()) {
         alert("Login bem-sucedido! Bem-vindo, " + perfilPadrao.nome + "!");
-        window.location.href = "../Pages/index.html";
+        window.location.href = "./painel.html";
     } else {
         alert("Login inválido, Tente novamente!!");
     }
